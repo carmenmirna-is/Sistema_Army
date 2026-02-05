@@ -54,13 +54,12 @@ class PerfilArmy(models.Model):
     # Foto de perfil
     foto_perfil = models.ImageField(upload_to='perfiles/', blank=True, null=True)
     
-    # Galería de fotos (relación con otra tabla)
-    
     # Metadata
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
     
     class Meta:
+        db_table = 'army_perfilarmy'  # ← AGREGAR ESTO
         verbose_name = "Perfil ARMY"
         verbose_name_plural = "Perfiles ARMY"
         ordering = ['nombre']
@@ -86,6 +85,7 @@ class FotoGaleria(models.Model):
     fecha_subida = models.DateTimeField(auto_now_add=True)
     
     class Meta:
+        db_table = 'army_fotogaleria'  # ← AGREGAR ESTO
         verbose_name = "Foto de Galería"
         verbose_name_plural = "Fotos de Galería"
         ordering = ['-fecha_subida']
@@ -101,6 +101,7 @@ class ListaPersonal(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     
     class Meta:
+        db_table = 'army_listapersonal'  # ← AGREGAR ESTO
         verbose_name = "Lista Personal"
         verbose_name_plural = "Listas Personales"
         ordering = ['-fecha_creacion']
