@@ -36,7 +36,7 @@ class PerfilArmy(models.Model):
     instagram = models.CharField(max_length=100, blank=True)
     twitter = models.CharField(max_length=100, blank=True)
     tiktok = models.CharField(max_length=100, blank=True)
-    spotify = models.CharField(max_length=100, blank=True)
+    spotify = models.CharField(max_max=100, blank=True)
     
     # BTS Info
     bias_favorito = models.CharField(max_length=100, blank=True, help_text="Tu miembro favorito de BTS")
@@ -59,7 +59,7 @@ class PerfilArmy(models.Model):
     fecha_actualizacion = models.DateTimeField(auto_now=True)
     
     class Meta:
-        db_table = 'army_perfilarmy'  # ← AGREGAR ESTO
+        db_table = '_army__perfilarmy'  # ← CAMBIAR a nombre viejo
         verbose_name = "Perfil ARMY"
         verbose_name_plural = "Perfiles ARMY"
         ordering = ['nombre']
@@ -85,7 +85,7 @@ class FotoGaleria(models.Model):
     fecha_subida = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        db_table = 'army_fotogaleria'  # ← AGREGAR ESTO
+        db_table = '_army__fotogaleria'  # ← CAMBIAR a nombre viejo
         verbose_name = "Foto de Galería"
         verbose_name_plural = "Fotos de Galería"
         ordering = ['-fecha_subida']
@@ -101,7 +101,7 @@ class ListaPersonal(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        db_table = 'army_listapersonal'  # ← AGREGAR ESTO
+        db_table = '_army__listapersonal'  # ← CAMBIAR a nombre viejo
         verbose_name = "Lista Personal"
         verbose_name_plural = "Listas Personales"
         ordering = ['-fecha_creacion']
