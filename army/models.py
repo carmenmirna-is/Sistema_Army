@@ -36,7 +36,7 @@ class PerfilArmy(models.Model):
     instagram = models.CharField(max_length=100, blank=True)
     twitter = models.CharField(max_length=100, blank=True)
     tiktok = models.CharField(max_length=100, blank=True)
-    spotify = models.CharField(max_max=100, blank=True)
+    spotify = models.CharField(max_length=100, blank=True)
     
     # BTS Info
     bias_favorito = models.CharField(max_length=100, blank=True, help_text="Tu miembro favorito de BTS")
