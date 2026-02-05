@@ -1,2 +1,5 @@
-pip freeze > requirements.txt
-echo "gunicorn" >> requirements.txt
+Django>=6.0.2
+psycopg2-binary
+dj-database-url
+whitenoise
+gunicorn
