@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title mb-4">
+                    <i class="fas fa-edit"></i> Editar Mi Perfil 💜
+                </h3>
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-user"></i> Nombre completo</label>
+                            {{ form.nombre }}
+                            {% if form.nombre.errors %}
+                                <div class="text-danger small">{{ form.nombre.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-venus-mars"></i> Género</label>
+                            {{ form.genero }}
+                            {% if form.genero.errors %}
+                                <div class="text-danger small">{{ form.genero.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-birthday-cake"></i> Fecha de nacimiento</label>
+                            {{ form.fecha_nacimiento }}
+                            {% if form.fecha_nacimiento.errors %}
+                                <div class="text-danger small">{{ form.fecha_nacimiento.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-phone"></i> Celular</label>
+                            {{ form.celular }}
+                            {% if form.celular.errors %}
+                                <div class="text-danger small">{{ form.celular.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-map-marked-alt"></i> Departamento</label>
+                            {{ form.departamento }}
+                            {% if form.departamento.errors %}
+                                <div class="text-danger small">{{ form.departamento.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fas fa-city"></i> Ciudad</label>
+                            {{ form.ciudad }}
+                            {% if form.ciudad.errors %}
+                                <div class="text-danger small">{{ form.ciudad.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    <h5 class="mb-3"><i class="fas fa-share-alt"></i> Redes Sociales</h5>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fab fa-instagram"></i> Instagram</label>
+                            {{ form.instagram }}
+                            {% if form.instagram.errors %}
+                                <div class="text-danger small">{{ form.instagram.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fab fa-twitter"></i> Twitter</label>
+                            {{ form.twitter }}
+                            {% if form.twitter.errors %}
+                                <div class="text-danger small">{{ form.twitter.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fab fa-tiktok"></i> TikTok</label>
+                            {{ form.tiktok }}
+                            {% if form.tiktok.errors %}
+                                <div class="text-danger small">{{ form.tiktok.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label"><i class="fab fa-spotify"></i> Spotify</label>
+                            {{ form.spotify }}
+                            {% if form.spotify.errors %}
+                                <div class="text-danger small">{{ form.spotify.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    <h5 class="mb-3"><i class="fas fa-heart"></i> Información BTS</h5>
+                    
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-star"></i> Tu Bias favorito</label>
+                        {{ form.bias_favorito }}
+                        {% if form.bias_favorito.errors %}
+                            <div class="text-danger small">{{ form.bias_favorito.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <hr class="my-4">
+                    <h5 class="mb-3"><i class="fas fa-briefcase"></i> Ocupación</h5>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">¿A qué te dedicas?</label>
+                        {{ form.ocupacion }}
+                        {% if form.ocupacion.errors %}
+                            <div class="text-danger small">{{ form.ocupacion.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-comment-alt"></i> Sobre mí</label>
+                        {{ form.sobre_mi }}
+                        {% if form.sobre_mi.errors %}
+                            <div class="text-danger small">{{ form.sobre_mi.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <hr class="my-4">
+                    <h5 class="mb-3"><i class="fas fa-camera"></i> Foto de Perfil</h5>
+                    
+                    <div class="mb-3">
+                        {{ form.foto_perfil }}
+                        {% if form.foto_perfil.errors %}
+                            <div class="text-danger small">{{ form.foto_perfil.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                        <a href="{% url 'ver_perfil' user.username %}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

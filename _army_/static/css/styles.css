@@ -1,0 +1,688 @@
+:root {
+    --bts-purple: #0D1E4C;
+    --bts-pink: #C48CB3;
+    --bts-blue: #83A6CE;
+    --bts-dark: #0B1B32;
+    --bts-light: #E5C9D7;
+    --bts-accent: #26415E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #83A6CE 0%, #26415E 100%);
+    min-height: 100vh;
+    color: var(--bts-dark);
+}
+
+.navbar {
+    background: linear-gradient(90deg, var(--bts-purple), var(--bts-accent));
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: white !important;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   CORRECCIÓN CRÍTICA: CONTAINER Y COLUMNAS
+   ======================================== */
+
+/* Container Principal Responsivo */
+.container-main {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    /* CORRECCIÓN: Evitar overflow horizontal */
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .container-main {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+}
+
+/* CORRECCIÓN CRÍTICA: Fijar el ancho de las columnas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    /* CORRECCIÓN: Prevenir desbordamiento */
+    max-width: 100%;
+    overflow: visible;
+}
+
+/* CORRECCIÓN: Columnas con padding correcto */
+.col-lg-3,
+.col-lg-6,
+.col-lg-9 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 992px) {
+    .col-lg-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    
+    .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .col-lg-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+}
+
+/* ========================================
+   CARDS - CORRECCIÓN PRINCIPAL
+   ======================================== */
+
+/* Cards con mejor espaciado */
+.card {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: none;
+    transition: transform 0.3s;
+    background: white;
+    /* CORRECCIÓN CRÍTICA: Prevenir desbordamiento */
+    overflow: hidden;
+    width: 100%;
+    /* CORRECCIÓN: Asegurar que las cards no se salgan en sticky */
+    contain: layout;
+}
+
+.card-body {
+    padding: 1.25rem;
+    /* CORRECCIÓN: Prevenir que el contenido se desborde */
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* CORRECCIÓN: Hover solo en desktop y sin transform si es sticky */
+@media (min-width: 992px) {
+    .card:not(.sticky-social .card):hover {
+        transform: translateY(-5px);
+    }
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--bts-purple);
+    font-size: 1.1rem;
+}
+
+@media (min-width: 768px) {
+    .card-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Botones */
+.btn-primary {
+    background: linear-gradient(90deg, var(--bts-accent), var(--bts-purple));
+    border: none;
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(13, 30, 76, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(90deg, var(--bts-blue), var(--bts-pink));
+    border: none;
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(131, 166, 206, 0.4);
+}
+
+.btn-danger {
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: 600;
+}
+
+.btn-outline-primary {
+    border-color: var(--bts-accent);
+    color: var(--bts-accent);
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    background: var(--bts-accent);
+    border-color: var(--bts-accent);
+    color: white;
+}
+
+.alert {
+    border-radius: 15px;
+    border: none;
+}
+
+/* Stats Cards */
+.stats-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 140px;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    .stats-card {
+        padding: 25px 20px;
+        min-height: 160px;
+    }
+}
+
+.stats-card i {
+    font-size: 2rem;
+    color: var(--bts-accent);
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .stats-card i {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+}
+
+.stats-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--bts-purple);
+    margin: 8px 0;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .stats-card h3 {
+        font-size: 2.5rem;
+        margin: 10px 0;
+    }
+}
+
+.stats-card p {
+    color: var(--bts-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+    .stats-card p {
+        font-size: 1rem;
+    }
+}
+
+.badge-custom {
+    background: linear-gradient(90deg, var(--bts-accent), var(--bts-pink));
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 0.85rem;
+}
+
+/* ========================================
+   FOTOS DE PERFIL - PÁGINA INDIVIDUAL
+   ======================================== */
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px solid var(--bts-light);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 768px) {
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+.profile-photo-placeholder {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #83A6CE 0%, #26415E 100%);
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 768px) {
+    .profile-photo-placeholder {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* ========================================
+   FOTOS DE PERFIL - DIRECTORIO
+   ======================================== */
+
+.profile-card-directorio {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-card-directorio:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.profile-photo-directorio {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px solid var(--bts-light);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+@media (min-width: 768px) {
+    .profile-photo-directorio {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.profile-card-directorio:hover .profile-photo-directorio {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.profile-photo-placeholder-directorio {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #83A6CE 0%, #26415E 100%);
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 768px) {
+    .profile-photo-placeholder-directorio {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.profile-photo-placeholder-directorio i {
+    font-size: 3rem;
+}
+
+@media (min-width: 768px) {
+    .profile-photo-placeholder-directorio i {
+        font-size: 3.5rem;
+    }
+}
+
+/* ========================================
+   REDES SOCIALES - STICKY CORREGIDO
+   ======================================== */
+
+/* CORRECCIÓN CRÍTICA: Contenedor de columna para sticky */
+@media (min-width: 992px) {
+    .col-lg-3 {
+        align-self: flex-start;
+        /* CORRECCIÓN: Evitar que el contenido se salga */
+        overflow: visible;
+    }
+}
+
+/* CORRECCIÓN: Sticky mejorado */
+.sticky-social {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+    .sticky-social {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+        /* CORRECCIÓN CRÍTICA: Limitar altura y permitir scroll interno */
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        /* CORRECCIÓN: No aplicar transform en hover para evitar bugs de sticky */
+        will-change: auto;
+    }
+    
+    /* CORRECCIÓN: Remover transform de cards dentro de sticky */
+    .sticky-social .card {
+        transform: none !important;
+    }
+    
+    .sticky-social .card:hover {
+        transform: none !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    color: var(--bts-accent);
+    text-decoration: none;
+    padding: 14px 12px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    background: rgba(131, 166, 206, 0.1);
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+/* CORRECCIÓN: Solo hover en desktop, sin transform que afecte sticky */
+@media (min-width: 992px) {
+    .social-link:hover {
+        background: var(--bts-light);
+        color: var(--bts-purple);
+        /* CORRECCIÓN: Cambiar de translateX a background y color solamente */
+        /* transform: translateX(5px); */ /* REMOVIDO */
+    }
+}
+
+@media (max-width: 991px) {
+    .social-link:active {
+        background: var(--bts-light);
+        color: var(--bts-purple);
+    }
+}
+
+.social-link i {
+    font-size: 1.3rem;
+    min-width: 30px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.social-link span {
+    word-break: break-word;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Iconos de redes en directorio */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-icons a {
+    color: var(--bts-accent);
+    font-size: 1.4rem;
+    transition: all 0.3s;
+}
+
+@media (min-width: 992px) {
+    .social-icons a:hover {
+        color: var(--bts-pink);
+        transform: scale(1.15) translateY(-2px);
+    }
+}
+
+/* ========================================
+   ACCORDION
+   ======================================== */
+
+.accordion-item {
+    margin-bottom: 10px;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-size: 0.9rem;
+    padding: 14px 12px;
+    word-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+    .accordion-button {
+        font-size: 1rem;
+        padding: 16px 20px;
+    }
+}
+
+.accordion-body {
+    font-size: 0.9rem;
+    padding: 15px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+    .accordion-body {
+        font-size: 1rem;
+        padding: 20px;
+    }
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+footer {
+    background: linear-gradient(90deg, var(--bts-purple), var(--bts-accent));
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+    footer {
+        padding: 20px 0;
+        margin-top: 50px;
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   FORMS
+   ======================================== */
+
+.form-control {
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    border-color: var(--bts-accent);
+    box-shadow: 0 0 0 0.2rem rgba(38, 65, 94, 0.25);
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+
+.text-muted {
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .text-muted {
+        font-size: 0.9rem;
+    }
+}
+
+/* ========================================
+   SCROLLBAR PERSONALIZADO
+   ======================================== */
+
+@media (min-width: 992px) {
+    .sticky-social::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .sticky-social::-webkit-scrollbar-track {
+        background: rgba(131, 166, 206, 0.1);
+        border-radius: 10px;
+    }
+    
+    .sticky-social::-webkit-scrollbar-thumb {
+        background: var(--bts-accent);
+        border-radius: 10px;
+    }
+    
+    .sticky-social::-webkit-scrollbar-thumb:hover {
+        background: var(--bts-purple);
+    }
+}
+
+/* ========================================
+   MEJORAS TOUCH MÓVILES
+   ======================================== */
+
+@media (max-width: 767px) {
+    .btn, .social-link, .accordion-button {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .btn {
+        min-height: 44px;
+    }
+}
+
+/* ========================================
+   CORRECCIONES MÓVIL
+   ======================================== */
+
+@media (max-width: 991px) {
+    /* CORRECCIÓN: Asegurar que las columnas no se desborden */
+    .col-lg-3,
+    .col-lg-6 {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .col-lg-3:last-child {
+        margin-bottom: 0;
+    }
+    
+    /* CORRECCIÓN: Cards sin desbordamiento en móvil */
+    .card {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+}
+
+/* ========================================
+   CORRECCIÓN CRÍTICA: MARGIN BOTTOM EN CARDS
+   ======================================== */
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* CORRECCIÓN: Espaciado consistente */
+.card + .card {
+    margin-top: 0;
+}
+
+/* ========================================
+   PREVENCIÓN ADICIONAL DE OVERFLOW
+   ======================================== */
+
+/* CORRECCIÓN: Asegurar que todos los elementos de texto se ajusten */
+.card-body p,
+.card-body h5,
+.card-body span,
+.card-body div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+/* CORRECCIÓN: Botones responsivos en móvil */
+@media (max-width: 767px) {
+    .btn-sm {
+        font-size: 0.85rem;
+        padding: 8px 20px;
+    }
+    
+    .w-100 {
+        width: 100% !important;
+    }
+}
+
+/* CORRECCIÓN CRÍTICA FINAL: Contenedor general sin overflow */
+body {
+    overflow-x: hidden;
+}
+
+html {
+    overflow-x: hidden;
+}

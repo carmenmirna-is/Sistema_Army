@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Lista{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title mb-4">
+                    <i class="fas fa-list"></i> Crear Nueva Lista 📝
+                </h3>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-heading"></i> Título de la Lista</label>
+                        {{ form.titulo }}
+                        {% if form.titulo.errors %}
+                            <div class="text-danger small">{{ form.titulo.errors }}</div>
+                        {% endif %}
+                        <small class="form-text text-muted d-block mt-2">
+                            Ejemplo: "Mis canciones favoritas de BTS", "Mis conciertos", etc.
+                        </small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-align-left"></i> Contenido</label>
+                        {{ form.contenido }}
+                        {% if form.contenido.errors %}
+                            <div class="text-danger small">{{ form.contenido.errors }}</div>
+                        {% endif %}
+                        <small class="form-text text-muted d-block mt-2">
+                            Puedes escribir cada ítem en una línea nueva.
+                        </small>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Crear Lista
+                        </button>
+                        <a href="{% url 'ver_perfil' user.username %}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
