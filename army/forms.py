@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from cloudinary.forms import CloudinaryFileField  # ← AGREGAR ESTO
 from .models import PerfilArmy, FotoGaleria, ListaPersonal
 
 
@@ -20,6 +21,15 @@ class RegistroForm(UserCreationForm):
 
 
 class PerfilArmyForm(forms.ModelForm):
+    # Redefinir el campo foto_perfil para usar CloudinaryFileField
+    foto_perfil = CloudinaryFileField(
+        required=False,
+        options={
+            'folder': 'perfiles/',
+            'resource_type': 'image',
+        }
+    )
+    
     class Meta:
         model = PerfilArmy
         fields = [
@@ -41,16 +51,25 @@ class PerfilArmyForm(forms.ModelForm):
             'ocupacion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Estudiante, Profesional, Emprendedor, etc.'}),
             'sobre_mi': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Cuéntanos algo sobre ti...'}),
             'celular': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '+591 12345678'}),
-            'foto_perfil': forms.FileInput(attrs={'class': 'form-control'}),
+            # Quitar foto_perfil de los widgets, ya lo definimos arriba
         }
 
 
 class FotoGaleriaForm(forms.ModelForm):
+    # Redefinir el campo foto para usar CloudinaryFileField
+    foto = CloudinaryFileField(
+        required=True,
+        options={
+            'folder': 'galeria/',
+            'resource_type': 'image',
+        }
+    )
+    
     class Meta:
         model = FotoGaleria
         fields = ['foto', 'descripcion']
         widgets = {
-            'foto': forms.FileInput(attrs={'class': 'form-control', 'accept': 'image/*'}),
+            # Quitar 'foto' de los widgets, ya lo definimos arriba
             'descripcion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Descripción de la foto (opcional)'}),
         }
 
