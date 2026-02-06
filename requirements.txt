@@ -5,5 +5,5 @@ dj-database-url
 psycopg2-binary
 python-dotenv
 Pillow
-django-cloudinary-storage
-cloudinary
+cloudinary==1.41.0
+django-cloudinary-storage==0.3.0

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from cloudinary.models import CloudinaryField  # ← AGREGAR ESTA LÍNEA
 
 class PerfilArmy(models.Model):
     GENERO_CHOICES = [
@@ -51,15 +52,15 @@ class PerfilArmy(models.Model):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{8,15}$', message="El número debe estar en formato: '+591 12345678'")
     celular = models.CharField(validators=[phone_regex], max_length=17, blank=True)
     
-    # Foto de perfil
-    foto_perfil = models.ImageField(upload_to='perfiles/', blank=True, null=True)
+    # Foto de perfil - CAMBIAR A CLOUDINARYFIELD
+    foto_perfil = CloudinaryField('image', blank=True, null=True)
     
     # Metadata
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
     
     class Meta:
-        db_table = '_army__perfilarmy'  # ← CAMBIAR a nombre viejo
+        db_table = '_army__perfilarmy'
         verbose_name = "Perfil ARMY"
         verbose_name_plural = "Perfiles ARMY"
         ordering = ['nombre']
@@ -80,12 +81,13 @@ class PerfilArmy(models.Model):
 
 class FotoGaleria(models.Model):
     perfil = models.ForeignKey(PerfilArmy, on_delete=models.CASCADE, related_name='galeria')
-    foto = models.ImageField(upload_to='galeria/')
+    # CAMBIAR A CLOUDINARYFIELD
+    foto = CloudinaryField('image')
     descripcion = models.CharField(max_length=200, blank=True)
     fecha_subida = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        db_table = '_army__fotogaleria'  # ← CAMBIAR a nombre viejo
+        db_table = '_army__fotogaleria'
         verbose_name = "Foto de Galería"
         verbose_name_plural = "Fotos de Galería"
         ordering = ['-fecha_subida']
@@ -101,7 +103,7 @@ class ListaPersonal(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        db_table = '_army__listapersonal'  # ← CAMBIAR a nombre viejo
+        db_table = '_army__listapersonal'
         verbose_name = "Lista Personal"
         verbose_name_plural = "Listas Personales"
         ordering = ['-fecha_creacion']
