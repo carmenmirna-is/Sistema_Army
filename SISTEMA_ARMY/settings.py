@@ -27,6 +27,14 @@ elif os.environ.get('RAILWAY_ENVIRONMENT_NAME') or os.environ.get('RAILWAY_ENVIR
 else:
     ALLOWED_HOSTS = ['*']
 
+# CSRF para Railway
+if os.environ.get('RAILWAY_ENVIRONMENT_NAME') or os.environ.get('RAILWAY_ENVIRONMENT'):
+    CSRF_TRUSTED_ORIGINS = [
+        'https://*.railway.app',
+        'https://*.up.railway.app',
+        'https://sistema-army-production.up.railway.app'  # Tu dominio específico
+    ]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
