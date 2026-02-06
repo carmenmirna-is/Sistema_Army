@@ -139,15 +139,24 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
+# ============================================
+# CONFIGURACIÓN DE CLOUDINARY (al final del archivo)
+# ============================================
 import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
-# Configuración de Cloudinary
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', ''),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', ''),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', ''),
-}
+# Configurar Cloudinary directamente
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+    secure=True
+)
 
-# Cambiar el almacenamiento por defecto
-if os.environ.get('RAILWAY_ENVIRONMENT_NAME') or os.environ.get('RAILWAY_ENVIRONMENT'):
+# Forzar uso de Cloudinary en producción
+if os.environ.get('RAILWAY_ENVIRONMENT_NAME') or os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('DATABASE_URL'):
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    
+# Mantener MEDIA_URL para templates
+MEDIA_URL = '/media/'
