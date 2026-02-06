@@ -15,9 +15,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-h#i1o=a$xmq#j7yjqeb6k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-# Configuración para Render
+# Configuración para producción
 if os.environ.get('RENDER'):
     ALLOWED_HOSTS = ['.onrender.com']
+elif os.environ.get('RAILWAY_ENVIRONMENT_NAME') or os.environ.get('RAILWAY_ENVIRONMENT'):
+    ALLOWED_HOSTS = [
+        '.railway.app', 
+        '.up.railway.app',
+        'sistema-army-production.up.railway.app'  # Pon tu dominio específico aquí
+    ]
 else:
     ALLOWED_HOSTS = ['*']
 
@@ -122,9 +128,3 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
-
-# Configuración para Railway/Render
-if os.environ.get('RENDER') or os.environ.get('RAILWAY_STATIC_URL'):
-    ALLOWED_HOSTS = ['.railway.app', '.up.railway.app', '.onrender.com']
-else:
-    ALLOWED_HOSTS = ['*']
