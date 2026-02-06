@@ -122,3 +122,9 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
+
+# Configuración para Railway/Render
+if os.environ.get('RENDER') or os.environ.get('RAILWAY_STATIC_URL'):
+    ALLOWED_HOSTS = ['.railway.app', '.up.railway.app', '.onrender.com']
+else:
+    ALLOWED_HOSTS = ['*']
