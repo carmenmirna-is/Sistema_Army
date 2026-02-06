@@ -1,5 +1,5 @@
 """
-Django settings for _army_ project.
+Django settings for _army_ project. hola.
 """
 
 from pathlib import Path
